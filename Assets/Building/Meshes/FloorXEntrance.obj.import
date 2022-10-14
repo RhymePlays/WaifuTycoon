@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/FloorXEntrance.obj-30143271b8b4bdc1026114d9bbd7aee6.mesh"
+
+[deps]
+
+files=[ "res://.import/FloorXEntrance.obj-30143271b8b4bdc1026114d9bbd7aee6.mesh" ]
+
+source_file="res://Assets/Building/Meshes/FloorXEntrance.obj"
+dest_files=[ "res://.import/FloorXEntrance.obj-30143271b8b4bdc1026114d9bbd7aee6.mesh", "res://.import/FloorXEntrance.obj-30143271b8b4bdc1026114d9bbd7aee6.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

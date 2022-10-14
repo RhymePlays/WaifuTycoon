@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/FloorXPillars.obj-c2a4133fb00f6e342d246b2f3a16b022.mesh"
+
+[deps]
+
+files=[ "res://.import/FloorXPillars.obj-c2a4133fb00f6e342d246b2f3a16b022.mesh" ]
+
+source_file="res://Assets/Building/Meshes/FloorXPillars.obj"
+dest_files=[ "res://.import/FloorXPillars.obj-c2a4133fb00f6e342d246b2f3a16b022.mesh", "res://.import/FloorXPillars.obj-c2a4133fb00f6e342d246b2f3a16b022.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

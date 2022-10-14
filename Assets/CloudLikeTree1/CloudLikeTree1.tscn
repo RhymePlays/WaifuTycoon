@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/CloudLikeTree1/CloudLikeTree1.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/CloudLikeTree1/Branch_Base_Color.png" type="Texture" id=2]
+[ext_resource path="res://Assets/CloudLikeTree1/Leaves_Base_Color.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=24]
+flags_unshaded = true
+params_cull_mode = 1
+params_grow = true
+params_grow_amount = 0.02
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=20]
+next_pass = SubResource( 24 )
+flags_unshaded = true
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=21]
+next_pass = SubResource( 24 )
+flags_unshaded = true
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="BoxShape" id=23]
+extents = Vector3( 1.4, 0.6, 1 )
+
+[sub_resource type="BoxShape" id=22]
+extents = Vector3( 0.2, 1.2, 0.2 )
+
+[node name="Tree" type="StaticBody"]
+transform = Transform( 0.996195, 0.0871557, 0, -0.0871189, 0.995773, 0.0290847, 0.0025349, -0.028974, 0.999577, 3.65, 1.39235, -8.03772 )
+
+[node name="CloudLikeTree1" type="MeshInstance" parent="."]
+transform = Transform( 0.00253487, -0.0871189, -0.996195, -0.028974, 0.995773, -0.0871557, 0.999577, 0.0290847, -2.97897e-08, -0.002249, -0.294638, 0.0292063 )
+mesh = ExtResource( 1 )
+skeleton = NodePath("../../Player/Camera")
+material/0 = SubResource( 20 )
+material/1 = SubResource( 21 )
+
+[node name="TreeCollision2" type="CollisionShape" parent="."]
+transform = Transform( 0.996194, -0.0871191, -0.00251561, 0.0871184, 0.996198, -0.000331141, 0.0025349, 0.000110684, 0.999997, -0.144566, 2.79978, -0.0185194 )
+shape = SubResource( 23 )
+
+[node name="TreeCollision" type="CollisionShape" parent="."]
+transform = Transform( 0.999577, 0.0290723, 0.000843773, -0.0290725, 0.999577, 6.14729e-05, -0.000841626, -8.60058e-05, 1, 0.0212123, 0.904912, 0.0261765 )
+shape = SubResource( 22 )

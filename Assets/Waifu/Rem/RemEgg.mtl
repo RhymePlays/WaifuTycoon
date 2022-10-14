@@ -1,0 +1,20 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.128981410)
+
+newmtl EggBody
+kd 0.304986 0.597201 0.991102
+ka 1 1 1
+ks 0.208661 0.208661 0.208661
+ke 0 0 0
+d 1
+illum 1
+
+newmtl Horn
+kd 0.991101 0.086821 0.770607
+ka 1 1 1
+ks 0.5 0.5 0.5
+ke 24.7775 1.34905 19.7534
+d 1
+Ns 1000
+illum 2
+

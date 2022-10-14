@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Waifu/Rem/RemEgg.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Assets/Waifu/Rem/EggBody_Base_Color.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=29]
+albedo_texture = ExtResource( 2 )
+roughness = 0.9
+
+[sub_resource type="SpatialMaterial" id=30]
+albedo_color = Color( 1, 0.454902, 0.988235, 1 )
+emission_enabled = true
+emission = Color( 0.980392, 0.301961, 1, 1 )
+emission_energy = 3.5
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="RemEgg" type="MeshInstance"]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.120265, 0 )
+mesh = ExtResource( 1 )
+material/0 = SubResource( 29 )
+material/1 = SubResource( 30 )

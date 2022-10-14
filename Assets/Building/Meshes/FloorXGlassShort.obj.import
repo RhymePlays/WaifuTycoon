@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/FloorXGlassShort.obj-d9e18f687ffba3564d4d35664368cef5.mesh"
+
+[deps]
+
+files=[ "res://.import/FloorXGlassShort.obj-d9e18f687ffba3564d4d35664368cef5.mesh" ]
+
+source_file="res://Assets/Building/Meshes/FloorXGlassShort.obj"
+dest_files=[ "res://.import/FloorXGlassShort.obj-d9e18f687ffba3564d4d35664368cef5.mesh", "res://.import/FloorXGlassShort.obj-d9e18f687ffba3564d4d35664368cef5.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
