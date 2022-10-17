@@ -62,7 +62,7 @@ func interact():
 	updateCounter()
 
 func _ready():
-	waifuDataContainingNode = get_node("/root/subRoot/3D World")
+	waifuDataContainingNode = get_node("/root/subRoot/GreenPlace")
 	
 	# Set default value to the WaifuDataContainingNode
 	if (podID in waifuDataContainingNode.data.pods) == false:

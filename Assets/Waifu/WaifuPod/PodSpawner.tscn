@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Waifu/WaifuPod/PodSpawner.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Waifu/WaifuPod/WaifuPodPlaceholder.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Fonts/GradientedFont.fnt" type="BitmapFont" id=3]
+
+[sub_resource type="SpatialMaterial" id=31]
+albedo_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+
+[sub_resource type="SpatialMaterial" id=32]
+emission_enabled = true
+emission = Color( 0.105882, 0.678431, 1, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CylinderShape" id=30]
+height = 0.015
+radius = 0.2
+
+[node name="PodSpawner" type="StaticBody"]
+script = ExtResource( 1 )
+podID = "Pod2"
+cost = 0
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 31 )
+material/1 = SubResource( 32 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00769694, 0 )
+shape = SubResource( 30 )
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0 )
+cast_shadow = 0
+pixel_size = 0.002
+billboard = 1
+double_sided = false
+alpha_cut = 1
+text = "Unlock Pod
+0g"
+font = ExtResource( 3 )

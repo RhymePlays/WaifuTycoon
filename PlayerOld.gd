@@ -14,7 +14,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		self.rotate_y(-event.relative.x * sensitivity)
 
-		var camNode = get_node("/root/subRoot/3D World/Player/Camera")
+		var camNode = get_node("/root/subRoot/GreenPlace/Player/Camera")
 		camNode.rotate_x(-event.relative.y * sensitivity)
 		camNode.rotation.x = clamp(camNode.rotation.x * 180/PI, -60, 60)* PI/180
 
