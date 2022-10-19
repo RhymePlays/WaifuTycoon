@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Waifu/EggContainer/EggContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Waifu/WaifuPod/WaifuPod.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Waifu/WaifuPod/WaifuPod.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://Assets/Waifu/WaifuPod/PodConfigurator.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Waifu/WaifuPod/PodConfigurator.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://Assets/Icons/SettingsIcon.png" type="Texture" id=7]
 
 [sub_resource type="SpatialMaterial" id=29]
 albedo_color = Color( 0.152941, 0.152941, 0.152941, 1 )
@@ -188,6 +189,14 @@ text = "Unlock Auto Harvestor = 500g"
 icon = SubResource( 36 )
 flat = true
 align = 0
+
+[node name="SettingsIcon" type="Sprite3D" parent="PodConfigurator"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+modulate = Color( 0.145098, 1, 0.694118, 1 )
+pixel_size = 0.002
+billboard = 1
+double_sided = false
+texture = ExtResource( 7 )
 
 [node name="AutoHarvestTimer" type="Timer" parent="."]
 wait_time = 10.0

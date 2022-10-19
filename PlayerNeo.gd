@@ -54,12 +54,13 @@ func _physics_process(_delta):
 
 		velocity = move_and_slide(velocity, Vector3.UP)
 
-
+		
+		# Raycast Interactor
 		if $Camera/RayCast.is_colliding():
 			if $Camera/RayCast.get_collider().has_method("interact"):
-				get_node("/root/subRoot/UI/Crosshair").modulate = Color.lime
+				get_node("/root/subRoot/UI/Crosshair").modulate = Color("#25ffb1")
 				if Input.is_action_just_pressed("accept"): $Camera/RayCast.get_collider().interact()
 			else:
-				get_node("/root/subRoot/UI/Crosshair").modulate = Color.white
+				get_node("/root/subRoot/UI/Crosshair").modulate = Color("1badff")
 		else:
-			get_node("/root/subRoot/UI/Crosshair").modulate = Color.white
+			get_node("/root/subRoot/UI/Crosshair").modulate = Color("1badff")
