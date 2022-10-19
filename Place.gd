@@ -1,5 +1,7 @@
 extends Spatial
 
+var placeName = "GreenWorld"
+
 var data = {
 	"money": 0,
 	"waifuPod": preload("res://Assets/Waifu/WaifuPod/WaifuPod.tscn"),
@@ -14,7 +16,7 @@ var data = {
 func updateMoney():
 	get_node("/root/subRoot/UI/MoneyCounter").text = " Money: "+str(data.money)+"g"
 
-func updatePrices():
+func updatePrices(): #Move the Price Updater from here to someplace else
 	var pricesString = ""
 	var itemNumber = 0
 	for waifu in data.waifus:
@@ -28,5 +30,5 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	# Board Price Updater
-	get_node("/root/subRoot/GreenPlace").updatePrices()
+	self.updatePrices()
 	updateMoney()
