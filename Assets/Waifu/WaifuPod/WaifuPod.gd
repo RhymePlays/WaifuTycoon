@@ -38,7 +38,7 @@ func updateEgg():
 
 func updateOthers():
 	# Set Egg-Container and Pod-Configurator Color (#BUG: The same material is being used on all the pods. #Fix: Create new mats for new pods)
-	emissionMaterialInstance.emission_enabled = true;emissionMaterialInstance.emission_energy = 3.5
+	emissionMaterialInstance.emission_enabled = true;emissionMaterialInstance.emission_energy = 3
 	emissionMaterialInstance.emission = waifuDataContainingNode.data.waifus[current_waifu].ActiveColor
 	$EggContainer/EggContainer/Skeleton/Base002.set_surface_material(3, emissionMaterialInstance)
 	$PodConfigurator/PodConfiguratorMesh.set_surface_material(3, emissionMaterialInstance)

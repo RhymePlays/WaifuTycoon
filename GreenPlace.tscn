@@ -89,6 +89,7 @@ texture = SubResource( 28 )
 expand = true
 
 [node name="Crosshair" type="TextureRect" parent="UI"]
+modulate = Color( 0.105882, 0.678431, 1, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
