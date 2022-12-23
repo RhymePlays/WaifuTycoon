@@ -1,12 +1,14 @@
 extends StaticBody
 
+onready var worldDataNode = get_node("/root/subRoot/")
+
 var interactableByUsersOfXPlace
 func interact():
-	get_parent().get_parent().placeNode.data.money = get_parent().get_parent().placeNode.data.money + get_parent().get_parent().placeNode.data.waifus[get_parent().get_parent().current_waifu].EggPrice * get_parent().get_parent().placeNode.data.pods[get_parent().get_parent().podID].EggCount
-	get_parent().get_parent().placeNode.updateMoney()
+	worldDataNode.data.places[get_parent().get_parent().placeID].money = worldDataNode.data.places[get_parent().get_parent().placeID].money + worldDataNode.data.waifus[get_parent().get_parent().current_waifu].EggPrice * worldDataNode.data.places[get_parent().get_parent().placeID].pods[get_parent().get_parent().podID].EggCount
+	# .updateMoney()
 	
-	get_parent().get_parent().placeNode.data.pods[get_parent().get_parent().podID].EggCount = 0
+	worldDataNode.data.places[get_parent().get_parent().placeID].pods[get_parent().get_parent().podID].EggCount = 0
 	get_parent().get_parent().updateCounter()
 
 func _ready():
-	interactableByUsersOfXPlace = get_parent().get_parent().place
+	interactableByUsersOfXPlace = get_parent().get_parent().placeID

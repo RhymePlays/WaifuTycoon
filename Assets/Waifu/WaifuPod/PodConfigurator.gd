@@ -1,6 +1,7 @@
 extends StaticBody
 
 var waifus = []
+onready var worldDataNode = get_node("/root/subRoot/")
 
 # Constructors/Calculator
 func buttonConstructor(text, icon, onClickFunc):
@@ -14,33 +15,33 @@ func buttonConstructor(text, icon, onClickFunc):
 
 func multiplierCalculator(addPercentage=0.05, costPercantage=0.05):
 	return {
-		"amountToBeAdded": floor(get_parent().placeNode.data.pods[self.get_parent().podID].Multiplier * addPercentage * 100)/100,
-		"priceToPay": floor(get_parent().placeNode.data.pods[self.get_parent().podID].Multiplier * costPercantage * 500 * 100)/100
+		"amountToBeAdded": floor(worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier * addPercentage * 100)/100,
+		"priceToPay": floor(worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier * costPercantage * 500 * 100)/100
 	}
 
 func autoHarvestorCalculator(addPercentage=0.05, costPercantage=0.2):
 	return {
-		"amountToBeReduced": floor(get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec * addPercentage * 100)/100,
-		"priceToPay": floor((10/get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec) * (costPercantage * 5000 * 100))/100 #AutoHarvestPerXSec needs to be devided by the Post-Unlock-AutoHarvestPerXSec
+		"amountToBeReduced": floor(worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec * addPercentage * 100)/100,
+		"priceToPay": floor((10/worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec) * (costPercantage * 5000 * 100))/100 #AutoHarvestPerXSec needs to be devided by the Post-Unlock-AutoHarvestPerXSec
 	}
 
 # Updaters
 func updateConfigStats():
-	$ConfigUI/PodStats.text = "Egg Per Fragment: "+str(get_parent().placeNode.data.waifus[self.get_parent().current_waifu].PerFragment)+"\nPod Multiplier: "+str(get_parent().placeNode.data.pods[self.get_parent().podID].Multiplier)+"x\nAuto-Harvest: "+str(get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec)+"s"
+	$ConfigUI/PodStats.text = "Egg Per Fragment: "+str(worldDataNode.data.waifus[self.get_parent().current_waifu].PerFragment)+"\nPod Multiplier: "+str(worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier)+"x\nAuto-Harvest: "+str(worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec)+"s"
 
 func updateUpgradesList():
 	for child in $ConfigUI/UpgradesContainerScroll/UpgradesContainer.get_children():
 		child.queue_free()
 	
 	# Auto-Harvestor Upgrader
-	if get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec == 0:
+	if worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec == 0:
 		$ConfigUI/UpgradesContainerScroll/UpgradesContainer.add_child(buttonConstructor("Unlock Auto-Harvestor = 1000", GradientTexture2D, "_buyAutoHarvestor"))
 	else:
-		if get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec - autoHarvestorCalculator().amountToBeReduced > 0.5:
+		if worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec - autoHarvestorCalculator().amountToBeReduced > 0.5:
 			$ConfigUI/UpgradesContainerScroll/UpgradesContainer.add_child(buttonConstructor("Auto-Harvestor -"+str(autoHarvestorCalculator().amountToBeReduced)+" = "+str(autoHarvestorCalculator().priceToPay)+"g", GradientTexture2D, "_buyAutoHarvestorUpgrade"))
 
 	# Multiplier Upgrader
-	if get_parent().placeNode.data.pods[self.get_parent().podID].Multiplier + multiplierCalculator().amountToBeAdded < 100:
+	if worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier + multiplierCalculator().amountToBeAdded < 100:
 		$ConfigUI/UpgradesContainerScroll/UpgradesContainer.add_child(buttonConstructor("Multiplier +"+str(multiplierCalculator().amountToBeAdded)+" = "+str(multiplierCalculator().priceToPay)+"g", GradientTexture2D, "_buyMultiplierUpgrade"))
 
 # Functions
@@ -54,31 +55,31 @@ func _waifuSelected(itemIndex):
 	updateConfigStats()
 
 func _buyAutoHarvestor(cost=1000):
-	if get_parent().placeNode.data.money >= cost:
-		get_parent().placeNode.data.money = get_parent().placeNode.data.money - cost
-		get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec = 10
+	if worldDataNode.data.places[get_parent().placeID].money >= cost:
+		worldDataNode.data.places[get_parent().placeID].money = worldDataNode.data.places[get_parent().placeID].money - cost
+		worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec = 10
 		
-		get_parent().placeNode.updateMoney()
+		# get_parent().placeNode.updateMoney()
 		updateConfigStats()
 		updateUpgradesList()
 		get_parent().updateAutoHarvestor()
 
 func _buyAutoHarvestorUpgrade():
-	if get_parent().placeNode.data.money >= autoHarvestorCalculator().priceToPay:
-		get_parent().placeNode.data.money = get_parent().placeNode.data.money - autoHarvestorCalculator().priceToPay
-		get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec = get_parent().placeNode.data.pods[self.get_parent().podID].AutoHarvestPerXSec - autoHarvestorCalculator().amountToBeReduced
+	if worldDataNode.data.places[get_parent().placeID].money >= autoHarvestorCalculator().priceToPay:
+		worldDataNode.data.places[get_parent().placeID].money = worldDataNode.data.places[get_parent().placeID].money - autoHarvestorCalculator().priceToPay
+		worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec = worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec - autoHarvestorCalculator().amountToBeReduced
 
-		get_parent().placeNode.updateMoney()
+		# get_parent().placeNode.updateMoney()
 		updateConfigStats()
 		updateUpgradesList()
 		get_parent().updateAutoHarvestor()
 
 func _buyMultiplierUpgrade():
-	if get_parent().placeNode.data.money >= multiplierCalculator().priceToPay:
-		get_parent().placeNode.data.money = get_parent().placeNode.data.money - multiplierCalculator().priceToPay
-		get_parent().placeNode.data.pods[self.get_parent().podID].Multiplier = get_parent().placeNode.data.pods[self.get_parent().podID].Multiplier + multiplierCalculator().amountToBeAdded
+	if worldDataNode.data.places[get_parent().placeID].money >= multiplierCalculator().priceToPay:
+		worldDataNode.data.places[get_parent().placeID].money = worldDataNode.data.places[get_parent().placeID].money - multiplierCalculator().priceToPay
+		worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier = worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier + multiplierCalculator().amountToBeAdded
 		
-		get_parent().placeNode.updateMoney()
+		# get_parent().placeNode.updateMoney()
 		updateConfigStats()
 		updateUpgradesList()
 
@@ -90,8 +91,8 @@ func interact():
 
 	$ConfigUI/ChooseWaifuDropdown.clear()
 	waifus.clear()
-	for waifu in get_parent().placeNode.data.waifus:
-		if waifu in get_parent().placeNode.data.unlockedWaifus:
+	for waifu in worldDataNode.data.waifus:
+		if waifu in worldDataNode.data.places[get_parent().placeID].unlockedWaifus:
 			$ConfigUI/ChooseWaifuDropdown.add_item(waifu)
 			waifus.append(waifu)
 
@@ -100,7 +101,6 @@ func interact():
 	updateUpgradesList()
 
 func _ready():
-	interactableByUsersOfXPlace = get_parent().place
+	interactableByUsersOfXPlace = get_parent().placeID
 	$ConfigUI/CloseButton.connect("pressed", self, "_closePanel")
 	$ConfigUI/ChooseWaifuDropdown.connect("item_selected", self, "_waifuSelected")
-
