@@ -59,7 +59,7 @@ func _buyAutoHarvestor(cost=1000):
 		worldDataNode.data.places[get_parent().placeID].money = worldDataNode.data.places[get_parent().placeID].money - cost
 		worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec = 10
 		
-		# get_parent().placeNode.updateMoney()
+		get_node("/root/subRoot/UI").updateMoney()
 		updateConfigStats()
 		updateUpgradesList()
 		get_parent().updateAutoHarvestor()
@@ -69,7 +69,7 @@ func _buyAutoHarvestorUpgrade():
 		worldDataNode.data.places[get_parent().placeID].money = worldDataNode.data.places[get_parent().placeID].money - autoHarvestorCalculator().priceToPay
 		worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec = worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].AutoHarvestPerXSec - autoHarvestorCalculator().amountToBeReduced
 
-		# get_parent().placeNode.updateMoney()
+		get_node("/root/subRoot/UI").updateMoney()
 		updateConfigStats()
 		updateUpgradesList()
 		get_parent().updateAutoHarvestor()
@@ -79,7 +79,7 @@ func _buyMultiplierUpgrade():
 		worldDataNode.data.places[get_parent().placeID].money = worldDataNode.data.places[get_parent().placeID].money - multiplierCalculator().priceToPay
 		worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier = worldDataNode.data.places[get_parent().placeID].pods[self.get_parent().podID].Multiplier + multiplierCalculator().amountToBeAdded
 		
-		# get_parent().placeNode.updateMoney()
+		get_node("/root/subRoot/UI").updateMoney()
 		updateConfigStats()
 		updateUpgradesList()
 

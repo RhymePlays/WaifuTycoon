@@ -15,11 +15,3 @@ var data = {
 		}
 	},
 }
-
-# func updatePrices(): #Move the Price Updater from here to someplace else (Make a signal perhaps?)
-# 	var pricesString = ""
-# 	var itemNumber = 0
-# 	for waifu in data.waifus:
-# 		itemNumber = itemNumber + 1
-# 		pricesString = pricesString + "\n  "+str(itemNumber)+") "+waifu+" Eggs - "+str(data.waifus[waifu].EggPrice)+":"+str(data.waifus[waifu].PerFragment)
-# 	get_node("/root/subRoot/GreenPlace/Building/Monitor/Label3D").text = "Prices:"+pricesString

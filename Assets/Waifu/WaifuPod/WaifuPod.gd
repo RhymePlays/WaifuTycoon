@@ -28,6 +28,7 @@ func changeWaifu(waifuID):
 func updateVideo():
 	videoInstance.set_file(worldDataNode.data.waifus[current_waifu].VideoURL)
 	$WaifuPodMesh/Display/Viewport/VideoPlayer.stream = videoInstance
+	$WaifuPodMesh/Display/Viewport/VideoPlayer.play()
 	"""$WaifuPodMesh/Display.texture = $WaifuPodMesh/Display/Viewport.get_texture()"""
 
 func updateEgg():
@@ -65,3 +66,10 @@ func interact():
 
 func _ready():
 	interactableByUsersOfXPlace = placeID
+
+	# Set default value to the WaifuDataContainingNode
+	if (podID in worldDataNode.data.places[placeID].pods) == false:
+		worldDataNode.data.places[placeID].pods[podID] = {"EggCount": 0, "Multiplier": 1, "AutoHarvestPerXSec": 0, "Waifu": current_waifu}
+
+	updateVideo()
+	updateEgg()
