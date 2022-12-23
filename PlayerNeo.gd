@@ -34,6 +34,10 @@ func getDirection(inputWeight):
 
 
 # Default Functions
+func _ready():
+	# Cursor Lock
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _input(event):
 	# Camera Rotation
 	if controlsEnabled and (event is InputEventMouseMotion):
@@ -58,7 +62,7 @@ func _physics_process(_delta):
 		
 		# Raycast Interactor
 		if $Camera/RayCast.is_colliding():
-
+			
 			if typeof($Camera/RayCast.get_collider().get("interactableByUsersOfXPlace")) != TYPE_STRING:
 				if $Camera/RayCast.get_collider().has_method("interact"):
 					get_node("/root/subRoot/UI/Crosshair").modulate = Color("#25ffb1")
@@ -67,8 +71,13 @@ func _physics_process(_delta):
 					get_node("/root/subRoot/UI/Crosshair").modulate = Color("1badff")
 			
 			elif $Camera/RayCast.get_collider().get("interactableByUsersOfXPlace") == userOfXPlace:
-				get_node("/root/subRoot/UI/Crosshair").modulate = Color("#25ffb1")
-				if Input.is_action_just_pressed("accept"): $Camera/RayCast.get_collider().interact()
+				if $Camera/RayCast.get_collider().has_method("interact"):
+					get_node("/root/subRoot/UI/Crosshair").modulate = Color("#25ffb1")
+					if Input.is_action_just_pressed("accept"): $Camera/RayCast.get_collider().interact()
+				else:
+					get_node("/root/subRoot/UI/Crosshair").modulate = Color("1badff")
+				# get_node("/root/subRoot/UI/Crosshair").modulate = Color("#25ffb1")
+				# if Input.is_action_just_pressed("accept"): $Camera/RayCast.get_collider().interact()
 			
 			else:
 				get_node("/root/subRoot/UI/Crosshair").modulate = Color("1badff")	

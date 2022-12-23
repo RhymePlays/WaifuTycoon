@@ -2,7 +2,7 @@ extends StaticBody
 
 export var current_waifu = "Rem"
 export var podID = "Pod1"
-export var place = "GreenPlace"
+export var placeID = "GreenPlace"
 
 var placeNode
 var eggInstance
@@ -64,8 +64,8 @@ func interact():
 	updateCounter()
 
 func _ready():
-	interactableByUsersOfXPlace = place
-	placeNode = get_node("/root/subRoot/"+place)
+	interactableByUsersOfXPlace = placeID
+	placeNode = get_node("/root/subRoot/"+placeID)
 	
 	# Set default value to the WaifuDataContainingNode
 	if (podID in placeNode.data.pods) == false:

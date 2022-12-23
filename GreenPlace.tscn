@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://PlayerNeo.gd" type="Script" id=1]
 [ext_resource path="res://Place.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=13]
 [ext_resource path="res://Assets/Crosshair.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Fonts/GradientedFont.fnt" type="BitmapFont" id=15]
+[ext_resource path="res://UI.gd" type="Script" id=16]
+[ext_resource path="res://World.gd" type="Script" id=17]
 
 [sub_resource type="Gradient" id=27]
 colors = PoolColorArray( 0.0745098, 0.0745098, 0.0745098, 1, 0, 0, 0, 0 )
@@ -77,10 +79,12 @@ extents = Vector3( 1.27145, 1.49719, 1.91113 )
 extents = Vector3( 3.4, 1.6, 2.7 )
 
 [node name="subRoot" type="Node"]
+script = ExtResource( 17 )
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 16 )
 
 [node name="TopGradient" type="TextureRect" parent="UI"]
 anchor_right = 1.0

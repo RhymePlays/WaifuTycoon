@@ -2,12 +2,12 @@ extends StaticBody
 
 export var podID = "Pod1"
 export var cost = 5000
-export var place = "GreenPlace"
+export var placeID = "GreenPlace"
 
 func spawnPod():
-	var waifuPod = get_node("/root/subRoot/"+place).data.waifuPod.instance()
+	var waifuPod = get_node("/root/subRoot/").data.waifuPod.instance()
 	waifuPod.podID = podID
-	waifuPod.place = place
+	waifuPod.placeID = placeID
 	waifuPod.transform.origin = self.transform.origin
 	self.get_parent().add_child(waifuPod)
 
@@ -15,13 +15,13 @@ func spawnPod():
 
 var interactableByUsersOfXPlace
 func interact():
-	if get_node("/root/subRoot/"+place).data.money >= cost:
-		get_node("/root/subRoot/"+place).data.money = get_node("/root/subRoot/"+place).data.money - cost
+	if get_node("/root/subRoot/").data.places[placeID].money >= cost:
+		get_node("/root/subRoot/").data.places[placeID].money = get_node("/root/subRoot/").data.places[placeID].money - cost
 		spawnPod()
 
 func _ready():
-	interactableByUsersOfXPlace = place
-	if podID in get_node("/root/subRoot/"+place).data.pods:
+	interactableByUsersOfXPlace = placeID
+	if podID in get_node("/root/subRoot/").data.places[placeID].pods:
 		spawnPod()
 	else:
 		$Label3D.text = "Unlock Pod\n"+str(cost)+"g"
