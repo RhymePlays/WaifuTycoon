@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/UnlockableObjectPlaceholder.obj-a4119370ab766bee16ad91968f1740e1.mesh"
+
+[deps]
+
+files=[ "res://.import/UnlockableObjectPlaceholder.obj-a4119370ab766bee16ad91968f1740e1.mesh" ]
+
+source_file="res://Assets/UnlockableObjects/UnlockableObjectPlaceholder.obj"
+dest_files=[ "res://.import/UnlockableObjectPlaceholder.obj-a4119370ab766bee16ad91968f1740e1.mesh", "res://.import/UnlockableObjectPlaceholder.obj-a4119370ab766bee16ad91968f1740e1.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

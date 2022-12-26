@@ -1,23 +1,19 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://PlayerNeo.gd" type="Script" id=1]
 [ext_resource path="res://Place.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Building/FloorXGlassLong.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Building/FloorXBottomWall.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/CloudLikeTree1/CloudLikeTree1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Waifu/WaifuPod/PodSpawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Ground/Ground.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Assets/Building/FloorXGlassShort.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Building/FloorXPillars.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Assets/Building/FloorXEntrance.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/UnlockableObjects/UnlockableObjectPlaceholder.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Building/FloorXGround.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Building/FloorXTopWall.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Assets/UITheme.tres" type="Theme" id=13]
 [ext_resource path="res://Assets/Crosshair.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Fonts/GradientedFont.fnt" type="BitmapFont" id=15]
 [ext_resource path="res://UI.gd" type="Script" id=16]
 [ext_resource path="res://World.gd" type="Script" id=17]
-[ext_resource path="res://Monitor.gd" type="Script" id=18]
 
 [sub_resource type="Gradient" id=27]
 colors = PoolColorArray( 0.0745098, 0.0745098, 0.0745098, 1, 0, 0, 0, 0 )
@@ -51,12 +47,6 @@ height = 0.25
 [sub_resource type="CapsuleMesh" id=20]
 radius = 0.175
 mid_height = 0.25
-
-[sub_resource type="CubeMesh" id=23]
-size = Vector3( 0.02, 1.2, 2.134 )
-
-[sub_resource type="SpatialMaterial" id=25]
-albedo_color = Color( 0.152941, 0.152941, 0.152941, 1 )
 
 [sub_resource type="BoxShape" id=14]
 extents = Vector3( 10.3, 0.886498, 10.5 )
@@ -152,98 +142,37 @@ mesh = SubResource( 20 )
 [node name="GreenPlace" type="Spatial" parent="."]
 script = ExtResource( 2 )
 
+[node name="UpperFloorEx" type="Spatial" parent="GreenPlace"]
+transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 17.8, 3.66, -1.7 )
+visible = false
+
+[node name="FloorXGround" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 11 )]
+
+[node name="FloorXPillars" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 9 )]
+
+[node name="FloorXGlassLong" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 3 )]
+transform = Transform( -1, 0, -5.6426e-07, 0, 1, 0, 5.6426e-07, 0, -1, 0, 0.1, 0 )
+
+[node name="FloorXGlassLong2" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 1.12852e-06, 0, 1, 0, -1.12852e-06, 0, 1, 0, 0.0999999, 0 )
+
+[node name="FloorXGlassShort" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 8 )]
+
+[node name="FloorXGlassShort2" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 8 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+
+[node name="FloorXTopWall" parent="GreenPlace/UpperFloorEx" instance=ExtResource( 12 )]
+
 [node name="Building" type="Spatial" parent="GreenPlace"]
 transform = Transform( 0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -2.2, 1.1, -1.7 )
 
-[node name="Floor1" type="Spatial" parent="GreenPlace/Building"]
+[node name="FloorXGround" parent="GreenPlace/Building" instance=ExtResource( 11 )]
 
-[node name="PodSpawner1" parent="GreenPlace/Building/Floor1" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, 0.2, 4.5 )
-podID = "Pod1"
-
-[node name="PodSpawner2" parent="GreenPlace/Building/Floor1" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3125, 0.2, 4.5 )
-cost = 5000
-
-[node name="PodSpawner3" parent="GreenPlace/Building/Floor1" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0.2, 4.5 )
-podID = "Pod3"
-cost = 10000
-
-[node name="FloorXGround" parent="GreenPlace/Building/Floor1" instance=ExtResource( 11 )]
-
-[node name="FloorXPillars" parent="GreenPlace/Building/Floor1" instance=ExtResource( 9 )]
-
-[node name="FloorXBottomWall" parent="GreenPlace/Building/Floor1" instance=ExtResource( 4 )]
-
-[node name="FloorXEntrance" parent="GreenPlace/Building/Floor1" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0499997, 0, 0 )
-
-[node name="FloorXGlassShort" parent="GreenPlace/Building/Floor1" instance=ExtResource( 8 )]
-
-[node name="FloorXGlassShort2" parent="GreenPlace/Building/Floor1" instance=ExtResource( 8 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-
-[node name="FloorXTopWall" parent="GreenPlace/Building/Floor1" instance=ExtResource( 12 )]
-
-[node name="Floor2" type="Spatial" parent="GreenPlace/Building"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0 )
-
-[node name="FloorXGround" parent="GreenPlace/Building/Floor2" instance=ExtResource( 11 )]
-
-[node name="FloorXPillars" parent="GreenPlace/Building/Floor2" instance=ExtResource( 9 )]
-
-[node name="FloorXGlassLong" parent="GreenPlace/Building/Floor2" instance=ExtResource( 3 )]
-transform = Transform( -1, 0, -5.6426e-07, 0, 1, 0, 5.6426e-07, 0, -1, 0, 0.1, 0 )
-
-[node name="FloorXGlassLong2" parent="GreenPlace/Building/Floor2" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 1.12852e-06, 0, 1, 0, -1.12852e-06, 0, 1, 0, 0.0999999, 0 )
-
-[node name="FloorXGlassShort" parent="GreenPlace/Building/Floor2" instance=ExtResource( 8 )]
-
-[node name="FloorXGlassShort2" parent="GreenPlace/Building/Floor2" instance=ExtResource( 8 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-
-[node name="FloorXTopWall" parent="GreenPlace/Building/Floor2" instance=ExtResource( 12 )]
-
-[node name="Floor3" type="Spatial" parent="GreenPlace/Building"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4, 0 )
-
-[node name="FloorXGround" parent="GreenPlace/Building/Floor3" instance=ExtResource( 11 )]
-
-[node name="FloorXPillars" parent="GreenPlace/Building/Floor3" instance=ExtResource( 9 )]
-
-[node name="FloorXGlassLong" parent="GreenPlace/Building/Floor3" instance=ExtResource( 3 )]
-transform = Transform( -1, 0, -5.6426e-07, 0, 1, 0, 5.6426e-07, 0, -1, 0, 0.1, 0 )
-
-[node name="FloorXGlassLong2" parent="GreenPlace/Building/Floor3" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 1.12852e-06, 0, 1, 0, -1.12852e-06, 0, 1, 0, 0.0999999, 0 )
-
-[node name="FloorXGlassShort" parent="GreenPlace/Building/Floor3" instance=ExtResource( 8 )]
-
-[node name="FloorXGlassShort2" parent="GreenPlace/Building/Floor3" instance=ExtResource( 8 )]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-
-[node name="FloorXTopWall" parent="GreenPlace/Building/Floor3" instance=ExtResource( 12 )]
-
-[node name="FloorXGround2" parent="GreenPlace/Building/Floor3" instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.2, 0 )
-
-[node name="Monitor" type="MeshInstance" parent="GreenPlace/Building"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.79721, 1.375, 0 )
-mesh = SubResource( 23 )
-material/0 = SubResource( 25 )
-script = ExtResource( 18 )
-
-[node name="Label3D" type="Label3D" parent="GreenPlace/Building/Monitor"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0149999, 0.5625, 1 )
-pixel_size = 0.003
-double_sided = false
-alpha_cut = 1
-text = "Prices:"
-font = ExtResource( 15 )
-horizontal_alignment = 0
-vertical_alignment = 0
+[node name="Unlocker" parent="GreenPlace/Building" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5005, 0.469, 0.1255 )
+unlockableID = "ActivateFacility"
+nameOfUnlockable = "Facility"
+bandColor = Color( 1, 0, 0, 1 )
 
 [node name="Ground" type="StaticBody" parent="GreenPlace"]
 

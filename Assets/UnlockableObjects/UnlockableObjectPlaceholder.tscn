@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/GradientedFont.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://Assets/Waifu/WaifuPod/PodSpawner.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/UnlockableObjects/UnlockableObjectPlaceholder.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=29]
+albedo_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+
+[sub_resource type="SpatialMaterial" id=30]
+emission_enabled = true
+emission = Color( 1, 1, 1, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CylinderShape" id=31]
+height = 1.0
+radius = 0.1
+
+[node name="Unlocker" type="StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+script = ExtResource( 3 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, -0.25, 0 )
+mesh = ExtResource( 2 )
+material/0 = SubResource( 29 )
+material/1 = SubResource( 30 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.015, 0, 0, 0, 1, 0, -0.242303, 0 )
+shape = SubResource( 31 )
+
+[node name="Label3D" type="Label3D" parent="."]
+cast_shadow = 0
+pixel_size = 0.002
+billboard = 1
+double_sided = false
+alpha_cut = 1
+text = "Unlock Object
+0g"
+font = ExtResource( 1 )

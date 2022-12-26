@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/PodSpawner.obj-e07bcfae7a5530cbe69da4d828a21efa.mesh"
+
+[deps]
+
+files=[ "res://.import/PodSpawner.obj-e07bcfae7a5530cbe69da4d828a21efa.mesh" ]
+
+source_file="res://Assets/Waifu/WaifuPod/PodSpawner.obj"
+dest_files=[ "res://.import/PodSpawner.obj-e07bcfae7a5530cbe69da4d828a21efa.mesh", "res://.import/PodSpawner.obj-e07bcfae7a5530cbe69da4d828a21efa.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286

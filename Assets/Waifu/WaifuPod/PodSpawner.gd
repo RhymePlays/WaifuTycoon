@@ -5,7 +5,7 @@ export var cost = 5000
 export var placeID = "GreenPlace"
 
 func spawnPod():
-	var waifuPod = get_node("/root/subRoot/").data.waifuPod.instance()
+	var waifuPod = get_node("/root/subRoot/").data.miscPreloads.waifuPod.instance()
 	waifuPod.podID = podID
 	waifuPod.placeID = placeID
 	waifuPod.transform.origin = self.transform.origin
